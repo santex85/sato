@@ -24,7 +24,7 @@ def t(k, tag="span", cls=""):
 
 svc = "".join(
     f'<article class="card{" main" if i == 1 else ""}"><div class="ic">{ic}</div>{t(f"s{i}_t", "h3")}{t(f"s{i}_d", "p")}</article>'
-    for i, ic in zip(range(1, 7), ["💬", "🛠", "🟩", "⚙️", "🤝", "🏗"]))
+    for i, ic in zip(range(1, 8), ["💬", "🛠", "🟩", "⚙️", "🤝", "🏗", "🤖"]))
 how = "".join(f'<li><span class="n">{i}</span><div>{t(f"h{i}_t", "h3")}{t(f"h{i}_d", "p")}</div></li>' for i in range(1, 5))
 prices = "".join(
     f'<div class="price{" hi" if i == 1 else ""}">{t(f"p{i}_t", "h3")}<div class="pv">{t(f"p{i}_v")}</div>{t(f"p{i}_d", "p")}</div>'
