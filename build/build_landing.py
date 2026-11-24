@@ -71,7 +71,7 @@ ol.steps{{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:
 .contact{{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px}} .contact p{{color:var(--mut);max-width:640px}}
 .btns{{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}} .btn.line{{background:#06c755;border-color:#06c755;color:#fff}} .btn.wa{{background:#25d366;border-color:#25d366;color:#fff}} .btn.mail{{color:var(--acc)}}
 footer{{padding:30px 0 40px;color:var(--mut);font-size:14px}}
-@media (max-width:760px){{nav{{display:none}} .hero{{padding-top:44px;padding-bottom:32px}} .sub{{font-size:16px}}}}
+@media (max-width:760px){{.wrap{{padding:0 24px}} section{{padding:44px 0}} .card,.price,.steps li{{padding:20px}} .contact{{padding:24px}} nav{{display:none}} .hero{{padding-top:44px;padding-bottom:32px}} .sub{{font-size:16px}}}}
 </style>
 </head>
 <body>
