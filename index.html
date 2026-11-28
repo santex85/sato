@@ -46,6 +46,10 @@ ol.steps{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:r
 .btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px} .btn.line{background:#06c755;border-color:#06c755;color:#fff} .btn.wa{background:#25d366;border-color:#25d366;color:#fff} .btn.mail{color:var(--acc)}
 footer{padding:30px 0 40px;color:var(--mut);font-size:14px}
 @media (max-width:760px){.wrap{padding:0 24px} section{padding:44px 0} .card,.price,.steps li{padding:20px} .contact{padding:24px} nav{display:none} .hero{padding-top:44px;padding-bottom:32px} .sub{font-size:16px}}
+.rv{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease} .rv.in{opacity:1;transform:none}
+.card,.price,.steps li{transition:transform .2s ease,box-shadow .2s ease} .card:hover,.price:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(31,42,39,.10)}
+header.sc{box-shadow:0 2px 14px rgba(31,42,39,.10)} .btn{transition:transform .15s ease,box-shadow .15s ease} .btn:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(31,111,92,.25)}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none} .card:hover,.price:hover,.btn:hover{transform:none}}
 </style>
 </head>
 <body>
@@ -85,6 +89,18 @@ let start="en"; try{start=localStorage.getItem("lang")||""}catch(e){}
 if(!start){const n=(navigator.language||"en").slice(0,2); start=(n==="th"||n==="ru")?n:"en";}
 const q=new URLSearchParams(location.search).get("lang"); if(q) start=q;
 setLang(start);
+
+// лёгкие эффекты: появление блоков при прокрутке, тень шапки (без эффекта при prefers-reduced-motion)
+(function(){
+  var hd=document.querySelector("header");
+  function sc(){hd.classList.toggle("sc", window.scrollY>8)}
+  window.addEventListener("scroll", sc, {passive:true}); sc();
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in"); io.unobserve(e.target);}})}, {threshold:.12});
+  document.querySelectorAll(".card,.steps li,.price,.who,.contact,section h2,.pay").forEach(function(el,i){
+    el.classList.add("rv"); el.style.transitionDelay=((i%3)*70)+"ms"; io.observe(el);
+  });
+})();
 </script>
 </body>
 </html>
